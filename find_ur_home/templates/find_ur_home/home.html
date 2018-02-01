@@ -1,0 +1,187 @@
+{% load staticfiles %}
+
+{% block content %}
+
+
+
+{% include 'find_ur_home/navbar.html' %}
+<style>
+
+    #title{
+        -webkit-transition: -webkit-transform 1s, color 2s;
+    }
+
+    #title:hover{
+        -webkit-transform: rotate(360deg);
+
+    }
+
+    body{
+
+     background-color: #dee0d4;
+
+    }
+
+       #profile:hover > #menu{
+        display: block;
+    }
+
+
+    .house{
+
+     background: #FFF;
+     border:1px solid #FFF;
+     border-right:8px solid #dee0d4;
+     margin-bottom: 10px;
+
+
+    }
+    #img{
+        width: 500px;
+        height: 300px;
+    }
+</style>
+
+<div class="container" style="margin-top: 110px;">
+
+    <div class="row">
+
+        {% for house in houses %}
+
+        <article class="house col-md-4">
+            <header class="row">
+
+            <img src="{{house.for_user.set.image.url}}" width="30" style="margin-top:6px;" class="img-circle col-md-2" height="30"/>
+            <h4 class="col-md-6" style="text-align:center;"><strong><em>{{house.for_user.first_name}} {{house.for_user.last_name}}</em></strong></h4>
+            </header>
+            <hr width="250"/>
+
+            <section>
+
+
+
+{% if house in imaged_house %}
+
+<div id="carousel-{{forloop.counter}}" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+      {% for i in house.house_image_set.all %}
+    <li data-target="#carouse-{{forloop.counter}}" data-slide-to="{{forloop.counter}}"></li>
+      {% endfor %}
+
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox" >
+      {% for img in house.house_image_set.all %}
+
+      {% if forloop.counter == 1 %}
+    <div class="item active">
+        {% else %}
+
+        <div class="item">
+
+            {%endif%}
+      <img src="{{img.image.url}}" id="img" alt="no image">
+
+    </div>
+      {% endfor %}
+  </div>
+
+  <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-{{forloop.counter}}" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-{{forloop.counter}}" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+ 
+</div>
+
+    {% else %}
+
+    <div class="text-muted" style="text-align: center;height: 190px;margin-top: 100px;">
+        <h1>no images</h1>
+
+    </div>
+
+        <hr width="250">
+
+    {% endif %}
+
+    <h5>published in : {{house.pub_date}}</h5>
+
+    <h5>address : {{house.address}}</h5>
+
+    <h5>area : {{house.area}}</h5>
+
+    <h5></h5>
+
+    <h5>price :   {{house.price}} L.E</h5>
+
+    <a href="#" onclick="show_modal{{forloop.counter}}()"style="float: right;">learn more</a>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">house at {{house.address}}</h4>
+      </div>
+      <div class="modal-body"><!--body -->
+          <div style="margin-bottom: 70px;text-align: center;">
+             {{house.detail}}
+          </div>
+
+          published by {{house.for_user.first_name}} {{house.for_user.last_name}} in {{house.pub_date}}<br/>
+          email : {{house.for_user.email}}<br/>
+          phone number : {{house.for_user.set.phone_number}}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">ok</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+            </section>
+
+        </article>
+
+<script lang="text/javascript">
+
+    $("#share").click(function(){
+
+      alert("share it to help your friends!!");
+
+    });
+
+    function show_modal{{forloop.counter}}(){
+        $("#myModal{{forloop.counter}}").modal('show');
+    }
+
+
+ </script>
+
+
+      {% endfor %}
+
+      {% if no_result %}
+      <h1 class='text-muted' style="text-align: center;">{{no_result}}</h1>
+      {% endif %}
+
+    </div>
+
+</div>
+
+
+{% endblock %}

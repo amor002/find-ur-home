@@ -1,0 +1,85 @@
+{% extends 'find_ur_home/index.html' %}
+{% load staticfiles %}
+{% block content %}
+
+{% if msg %}
+   <div class="alert alert-warning alert-dismissible fade in navbar-fixed-top"  role="alert" style="text-align: center;">
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">×</span>
+   </button>
+       {{msg}} </div>
+
+{% endif %}
+
+<div class="container">
+
+    <span>
+        <header class=" text-muted">
+            <div id="top-imgs">
+            <span style="margin-right: 300px;">
+               <img src="{%static 'icon.png'%}" alt="image" sizes="72x72"/>
+            </span>
+               <span style="text-align: right;">
+               <img src="{%static 'icon.png'%}" alt="image" sizes="72x72"/>
+            </span>
+            </div>
+            <strong><em><h2 id="form-title"> sign up </h2></em></strong>
+        </header>
+        <hr style="width: 600px;border-top: 1px solid #8c90af;"/>
+    </span>
+
+    <form method="post" enctype="multipart/form-data" class="form-horizontal" id="profiler-form"  style="text-align: left;padding: 15px;">{% csrf_token %}
+
+        {% for input in form %}
+       <div class="form-group">
+         <div class="col-sm-2 control-label">
+             {{input.label_tag}}
+          </div>
+           <div class="col-sm-10">
+               {{input}}{% if input == form.password and user %}you can change your password from <a href="{% url 'password_reset' %}">here</a>{% endif %}
+           </div>
+
+       </div>
+
+        <br/>
+        {% endfor %}
+
+
+
+        <hr style="width: 600px;border-top: 1px solid #8c90af;"/>
+
+
+
+        <div style="text-align: right;">
+
+
+            <button class="btn btn-success" id="submit-btn" type="submit">submit</button>
+        </div>
+
+
+    </form>
+
+    <script>
+        $(document).ready(function() {
+
+    $('#id_username').attr('class', 'form-control');
+    $('#id_email').attr('class', 'form-control');
+    $('#id_phone_number').attr('class', 'form-control');
+    $('#id_password1').attr('class', 'form-control');
+    $('#id_password2').attr('class', 'form-control');
+    $('#id_first_name').attr('class', 'form-control');
+    $('#id_last_name').attr('class', 'form-control');
+    $('#id_address').attr('class', 'form-control');
+    $('#id_price').attr('class', 'form-control');
+    $('#id_area').attr('class', 'form-control');
+    $('#id_detail').attr('class', 'form-control');
+
+});
+    </script>
+
+</div>
+
+
+
+
+{% endblock %}

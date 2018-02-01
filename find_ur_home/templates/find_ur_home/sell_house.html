@@ -1,0 +1,34 @@
+{% extends 'find_ur_home/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+
+{% include 'find_ur_home/navbar.html' %}
+
+{% include 'find_ur_home/profiler.html' %}
+
+<link rel="stylesheet" href="{% static 'editinfo.css' %}"/>
+
+
+
+<script lang="text/javascript">
+
+    $(document).ready(function(){
+        $("#home").attr("class", "");
+        $("#profile").attr("class", "");
+        $("#sell-house").attr("class","active");
+        $("#form-title").html("sell house");
+        $("#id_address").attr('class', 'form-control');
+        $("#id_price").attr('class', 'form-control');
+        $("#id_area").attr('class', 'form-control');
+        $("#id_detail").attr('class', 'form-control');
+
+
+    });
+
+</script>
+
+
+{% endblock %}

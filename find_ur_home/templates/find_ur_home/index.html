@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{%static 'icon.png'%}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{%static 'icon.png'%}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{%static 'icon.png'%}">
+    <link rel="apple-touch-icon-precomposed" href="{%static 'icon.png'%}">
+    <link rel="shortcut icon" href="{%static 'icon.png'%}">
+    <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css'%}"/>
+    <script src="{%static 'bootstrap/js/jquery.js'%}"></script>
+    <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+
+
+    
+    <title>findurhome</title>
+</head>
+<body>
+
+{%block content%}
+
+<style>
+    .container{
+
+      background: #dce4e6;
+      border: 1px solid #FFF;
+      text-align: center;
+      margin: 120px auto;
+      width: 700px;
+
+
+    }
+    body{
+    background: #e3fbfb;
+
+    }
+    #elbl,#plbl{
+      text-align: center;
+
+
+    }
+
+
+</style>
+
+{% if form.errors %}
+   <div class="alert alert-warning alert-dismissible fade in navbar-fixed-top"  role="alert" style="text-align: center;">
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">×</span>
+   </button>
+       {{form.errors}} </div>
+
+{% endif %}
+
+<div class="container">
+    <span>
+        <header class=" text-muted">
+            <span style="margin-right: 300px;">
+            <img src="{%static 'icon.png'%}" alt="image" sizes="72x72"/>
+            </span>
+             <span style="text-align: right;">
+            <img src="{%static 'icon.png'%}" alt="image" sizes="72x72"/>
+            </span>
+            <strong><em><h3> welcome to findurhome</h3></em></strong>
+        </header>
+        <hr style="width: 600px;border-top: 1px solid #8c90af;"/>
+    </span>
+
+
+    <form method="post" name="form">{% csrf_token %}
+       <div class="form-group">
+         <label for="id_email" id="elbl"  class="text-left">username</label>
+         {{form.username}}
+       </div>
+        <div class="form-group">
+            <label for="id_password" id="plbl">Password</label>
+             {{form.password}}
+       </div>
+
+  <button type="submit" class="btn btn-primary" style="margin: 5px auto;">Submit</button>
+  <a href="{%url 'sign up'%}" id="lol" class="btn btn-success">sign up</a>
+  <br/>
+</form>
+
+    <hr style="width: 600px;border-top: 1px solid #8c90af;"/>
+    <footer class="text-muted" >
+        <blockquote style="font-size : 13px;">
+            this is an awesome web page as it helps you to find your home with properties you need as  you can
+            search for the location of the home or put your home on the webpage so people can buy it from you
+            <footer>
+                developed by <a href="https://www.facebook.com/amr.elmowaled">@amr</a>
+            </footer>
+        </blockquote>
+
+    </footer>
+
+
+</div>
+
+<script lang="text/javascript">
+
+    var email = $("#id_username");
+    email.attr("class","form-control");
+    email.attr("placeholder", "a@b.com");
+
+    var password = $("#id_password");
+    password.attr('type', 'password');
+    password.attr('class', 'form-control');
+    password.attr('placeholder', 'password');
+
+
+
+
+</script>
+
+
+{%endblock%}
+
+</body>
+</html>

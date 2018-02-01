@@ -1,0 +1,33 @@
+
+
+#title{
+    -webkit-transition: -webkit-transform 1s, color 2s;
+}
+
+#title:hover{
+    -webkit-transform: rotate(360deg);
+
+} body{
+       background-color: #dee0d4;
+
+  }
+
+#profile:hover > #menu{
+    display: block;
+}
+
+.container{
+
+    background: #FFFFFF;
+    border: 1px solid #FFF;
+    text-align: center;
+    margin: 120px auto;
+    width: 700px;
+
+
+}
+#top-imgs{
+    display: none;
+}
+
+

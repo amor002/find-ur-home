@@ -1,0 +1,60 @@
+{% extends 'find_ur_home/index.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+{% include 'find_ur_home/navbar.html' %}
+
+
+
+
+<div class="container">
+
+    
+
+    <form method="post" enctype="multipart/form-data" class="form-horizontal" id="profiler-form"  style="text-align: left;padding: 15px;">{% csrf_token %}
+
+        <li><strong style="margin-left: 10px;">are you sure you want to delete current image</strong></li>
+
+
+        <hr style="width: 600px;border-top: 1px solid #8c90af;"/>
+
+
+
+        <div style="text-align: right;">
+
+
+            <button class="btn btn-danger" id="submit-btn" type="submit">delete</button>
+        </div>
+
+
+    </form>
+
+
+
+
+
+<link rel="stylesheet" href="{% static 'editinfo.css' %}"/>
+
+
+
+
+
+
+<script lang="text/javascript">
+
+    $(document).ready(function(){
+
+        
+        $("#home").attr("class", "");
+        $('#sell-house').attr('class', '');
+        $("#profile").attr("class","active");
+        
+
+        
+    });
+    </script>
+
+
+{% endblock %}

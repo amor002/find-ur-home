@@ -1,0 +1,28 @@
+{% extends 'find_ur_home/index.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+{% include 'find_ur_home/navbar.html' %}
+
+{% include 'find_ur_home/profiler.html' %}
+<link rel="stylesheet" href="{% static 'editinfo.css' %}"/>
+
+
+<script lang="text/javascript">
+
+    $(document).ready(function(){
+
+        
+        $("#home").attr("class", "");
+        $('#sell-house').attr('class', '');
+        $("#profile").attr("class","active");
+        $("#form-title").html("add house image");
+
+        
+    });
+    </script>
+
+
+{% endblock %}
